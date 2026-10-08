@@ -1,4 +1,4 @@
-# Fitur-fitur yang telah dikenali:
+# Daftar Fitur:
 - pengguna dapat mendaftar ke website dengan email
 - pengguna dapat login ke wabsite dengan email
 - pengguna dapat memberikan rating kepuasan terhadap barang yang dipinjam
