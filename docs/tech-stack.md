@@ -6,7 +6,7 @@
 - JavaScript
   
 ## Backend
-TBD
+- SQL-based database
 
 ## Database
 TBD
