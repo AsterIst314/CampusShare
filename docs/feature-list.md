@@ -1,0 +1,12 @@
+# Fitur-fitur yang telah dikenali:
+- pengguna dapat mendaftar ke website dengan email
+- pengguna dapat login ke wabsite dengan email
+- pengguna dapat memberikan rating kepuasan terhadap barang yang dipinjam
+- meminjam dan mengembalikan barang sesuai aturan dan kesepakatan
+- website mampu mengkategorikan barang-barang menurut fungsinya
+- website dapat menyimpan informasi dan data pengguna termasuk NPM, nomor yang dihubungi, fakultas, dan prodi
+- pengguna dapat mencari dan memfilter barang barang sesuai kebutuhan (kategori, fakultas, status)
+- website mampu menampilkan log riwayat barang-barang yang dipinjam (menunggu persetujuan, sedang dipinjam, telah dikembalikan)
+- website mampu menampilkan log riwayat barang-barang peminjam (menunggu persetujuan, sedang dipinjam, telah dikembalikan)
+- pengguna dapat memberikan rating kepada pengguna (peminjam) lainnya
+- pengguna dapat melakukan chatting sesama pengguna
