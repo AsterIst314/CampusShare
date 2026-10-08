@@ -6,14 +6,14 @@
 - JavaScript
   
 ## Backend
-- SQL-based database
+- SQL-based database (Runtime)
+- Express.js (framework)
 
 ## Database
-TBD
-
+- PostgreSQL (SQL-based Database)
 ## Deployment
-TBD
+- Vercel/Render (Akan Ditentukan)
 
 ## Catatan
---
+- Menggunakan skema basis data relasional (SQL).
 
