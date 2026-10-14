@@ -11,7 +11,7 @@
 
 ## Database
 - MariaDB (SQL-based Database)
-- 
+  
 ## Deployment
 - Vercel/Render (Akan Ditentukan)
 
