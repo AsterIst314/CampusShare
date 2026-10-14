@@ -10,7 +10,8 @@
 - Express.js (framework)
 
 ## Database
-- PostgreSQL (SQL-based Database)
+- MariaDB (SQL-based Database)
+- 
 ## Deployment
 - Vercel/Render (Akan Ditentukan)
 
