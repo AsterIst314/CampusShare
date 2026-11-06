@@ -3,10 +3,10 @@ Website Pinjam Barang Antar Mahasiswa, platform web yang dirancang untuk memudah
 
 ## Kelompok 7 - The R.A.Y.S.
 Anggota:
-1. Rangga Araya - FrontEnd
-2. Afrizal Guswidianto - BackEnd
-3. Yulius Rio Triutomo - DevOps
-4. Saiful Rokhim - BackEnd
+1. Rangga Araya @rrangga31 - FrontEnd
+2. Afrizal Guswidianto @afrizalguswidianto-rgb - BackEnd
+3. Yulius Rio Triutomo @AsterIst314 - DevOps
+4. Saiful Rokhim @bangipul-code - BackEnd
 
 ## Link Website Project
 https://campusshare-front-end-wht3-git-main-asterist314.vercel.app/
