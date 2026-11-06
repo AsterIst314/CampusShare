@@ -9,5 +9,5 @@ Anggota:
 4. Saiful Rokhim @bangipul-code - BackEnd
 
 ## Link Website Project
-https://campusshare-front-end-wht3-git-main-asterist314.vercel.app/
+https://campusshare.infinityfree.io/
 
