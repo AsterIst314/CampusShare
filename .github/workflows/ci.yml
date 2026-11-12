@@ -23,48 +23,65 @@
 #          echo "Bot sedang memeriksa kode mahasiswa..."
 #          # Bot akan memastikan repositori tidak kosong
 
+name: CI Pipeline
 
-#name: CI Pipeline
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
 
-# This tells GitHub: "Run these checks whenever I upload new code"
-#on:
-#  push:
-#    branches: [ "**" ]
-#  pull_request:
-#    branches: [ "**" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-#jobs:
-#  build:
-#    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-#    steps:
-      # Step 1: Download code onto GitHub's invisible computer
-#      - name: Checkout code
-#        uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: mysqli, pdo_mysql
 
-      # Step 2: Set up PHP so we can test it
-#      - name: Setup PHP
-#        uses: shivammathur/setup-php@v2
-#        with:
-#          php-version: '8.2'
+      - name: Check PHP syntax
+        run: |
+          find src/front-end -type f -name "*.php" -print0 | xargs -0 -r -n 1 php -l
 
-      # Step 3: PHP Syntax Validation 
-#      - name: Check PHP Syntax
-#        run: |
-#          find . -name "*.php" -print0 | xargs -0 -n 1 php -l
+      - name: Check essential files
+        run: |
+          test -f src/front-end/index.php || {
+            echo "Error: src/front-end/index.php is missing."
+            exit 1
+          }
+          test -f src/back-end/database_campusshare.sql || {
+            echo "Error: database schema file is missing."
+            exit 1
+          }
+          echo "Essential files found."
 
-      # Step 4: File Existence Check 
-#      - name: Check Essential Files Exist
-#        run: |
-#          if [ ! -f "index.php" ] && [ ! -f "index.html" ]; then
-#            echo "Error: Missing index.php or index.html!"
-#            exit 1
-#          fi
-#          echo "Essential files found."
+      - name: Check PHP server starts
+        run: |
+          php -S 127.0.0.1:8000 -t src/front-end > /tmp/campusshare-php.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
 
-      # Step 5: Simple Smoke Test 
-#      - name: Run Smoke Test
-#        run: |
-#          php -S localhost:8000 &
-#          sleep 3
-#          curl -I http://localhost:8000 || exit 1
+          for attempt in $(seq 1 10); do
+            if grep -q "Development Server" /tmp/campusshare-php.log; then
+              echo "PHP development server started successfully."
+              exit 0
+            fi
+
+            if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+              cat /tmp/campusshare-php.log
+              echo "Error: PHP server exited before starting."
+              exit 1
+            fi
+
+            sleep 1
+          done
+
+          cat /tmp/campusshare-php.log
+          echo "Error: PHP server did not report startup in time."
+          exit 1
