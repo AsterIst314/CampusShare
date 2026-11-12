@@ -7,13 +7,12 @@
   
 ## Backend
 - SQL-based database (Runtime)
-- Express.js (framework)
 
 ## Database
 - MariaDB (SQL-based Database)
   
 ## Deployment
-- Vercel/Render (Akan Ditentukan)
+- InfinityFree
 
 ## Catatan
 - Menggunakan skema basis data relasional (SQL).
