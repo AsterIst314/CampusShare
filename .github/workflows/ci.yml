@@ -1,24 +1,70 @@
-name: Automated Code Checker
+#name: Automated Code Checker
 
-on:
-  push:
-    branches: [ main, dev ]
-  pull_request:
-    branches: [ main ]
+#on:
+#  push:
+#    branches: [ main, dev ]
+#  pull_request:
+#    branches: [ main ]
 
-jobs:
-  check-code:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Kode Mahasiswa
-        uses: actions/checkout@v3
+#jobs:
+#  check-code:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout Kode Mahasiswa
+#        uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+#      - name: Setup Node.js
+#        uses: actions/setup-node@v3
+#        with:
+#          node-version: 18
 
-      - name: Jalankan Pengecekan
-        run: |
-          echo "Bot sedang memeriksa kode mahasiswa..."
-          # Bot akan memastikan repositori tidak kosong
+#      - name: Jalankan Pengecekan
+#        run: |
+#          echo "Bot sedang memeriksa kode mahasiswa..."
+#          # Bot akan memastikan repositori tidak kosong
+
+
+#name: CI Pipeline
+
+# This tells GitHub: "Run these checks whenever I upload new code"
+#on:
+#  push:
+#    branches: [ "**" ]
+#  pull_request:
+#    branches: [ "**" ]
+
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+
+#    steps:
+      # Step 1: Download code onto GitHub's invisible computer
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+
+      # Step 2: Set up PHP so we can test it
+#      - name: Setup PHP
+#        uses: shivammathur/setup-php@v2
+#        with:
+#          php-version: '8.2'
+
+      # Step 3: PHP Syntax Validation 
+#      - name: Check PHP Syntax
+#        run: |
+#          find . -name "*.php" -print0 | xargs -0 -n 1 php -l
+
+      # Step 4: File Existence Check 
+#      - name: Check Essential Files Exist
+#        run: |
+#          if [ ! -f "index.php" ] && [ ! -f "index.html" ]; then
+#            echo "Error: Missing index.php or index.html!"
+#            exit 1
+#          fi
+#          echo "Essential files found."
+
+      # Step 5: Simple Smoke Test 
+#      - name: Run Smoke Test
+#        run: |
+#          php -S localhost:8000 &
+#          sleep 3
+#          curl -I http://localhost:8000 || exit 1
