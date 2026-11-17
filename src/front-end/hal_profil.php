@@ -1,5 +1,10 @@
 <?php 
 include "koneksi.php";
+
+include 'koneksi.php';
+$sql = "SELECT * FROM tabel_user";
+$result = $conn->query($sql);
+
 ?>
 <!doctype html>
 <html lang="id">
@@ -175,6 +180,20 @@ include "koneksi.php";
     </header>
 
     <main class="container page-container py-4">
+
+            <?php
+        if ($result->num_rows > 0) {
+          
+        $no = 1;
+        while($row = $result->fetch_assoc()) {
+        $nomor = $row["id_user"];
+        $nama = $row["nama"];
+        $nim = $row["nim"];
+        $fakultas = $row["fakultas"];
+
+        $no++;
+
+        ?>
         <section class="profile-banner d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4" aria-label="Profil mahasiswa">
             <div class="d-flex align-items-center gap-3">
                 <div class="profile-photo-wrap">
@@ -183,10 +202,10 @@ include "koneksi.php";
                 </div>
                 <div>
                     <div class="d-flex flex-wrap align-items-center gap-2">
-                        <h1 class="profile-title mb-0">Halo, Rizky Pratama!</h1>
+                        <h1 class="profile-title mb-0">Halo, <?= $nama; ?></h1>
                         <span class="badge rounded-pill verified-pill"><i class="bi bi-patch-check-fill me-1"></i>Terverifikasi SSO Kampus</span>
                     </div>
-                    <div class="profile-meta mt-1">NIM: 2006543210 · Departemen Teknik Mesin, Fakultas Teknik UI</div>
+                    <div class="profile-meta mt-1"><?= "NIM : ".$nim."   ,  ". "Fakultas : ".$fakultas; ?></div>
                     <div class="profile-campus mt-1"><i class="bi bi-buildings me-1"></i>Kampus Depok - Zona Pusat Riset Mahasiswa</div>
                 </div>
             </div>
@@ -195,6 +214,14 @@ include "koneksi.php";
                 <div><div class="trust-label">Skor Kepercayaan Kampus <i class="bi bi-info-circle text-secondary"></i></div><div class="trust-value">98 <span class="text-secondary fs-6 fw-normal">/100</span></div><div class="trust-caption">Peminjam Berintegritas Tinggi</div></div>
             </div>
         </section>
+        <?php
+            }
+    
+        } else {
+         echo "0 results";
+        }
+
+        ?>
 
         <section class="row g-3 mb-4" aria-label="Ringkasan aktivitas">
             <div class="col-6 col-lg-3">
