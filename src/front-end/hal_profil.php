@@ -1,7 +1,6 @@
 <?php 
-include "koneksi.php";
+include "../../src/back-end/koneksi.php";
 
-include 'koneksi.php';
 $sql = "SELECT * FROM tabel_user";
 $result = $conn->query($sql);
 
