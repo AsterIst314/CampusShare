@@ -1,0 +1,59 @@
+<!-- Kolom Pencarian & Filter -->
+<div class="filter-section">
+  <input type="text" id="searchInput" placeholder="Cari nama barang...">
+  <select id="categoryFilter">
+    <option value="all">Semua Kategori</option>
+    <option value="Alat Elektronik">Alat Elektronik</option>
+    <option value="Alat Tulis">Alat Tulis</option>
+  </select>
+  <button id="searchBtn">Cari</button>
+</div>
+
+<!-- Daftar Katalog Barang -->
+<div id="catalogList">
+  <div class="item-card" data-name="proyektor epson" data-category="Alat Elektronik">Proyektor Epson</div>
+  <div class="item-card" data-name="spidol papan tulis" data-category="Alat Tulis">Spidol Papan Tulis</div>
+  <div class="item-card" data-name="kabel hdmi" data-category="Alat Elektronik">Kabel HDMI</div>
+</div>
+
+<!-- Pesan Jika Barang Tidak Ditemukan (Kriteria 4) -->
+<div id="emptyMessage" style="display: none; text-align: center; padding: 20px; color: #666;">
+  <p>Maaf, barang yang Anda cari tidak ditemukan.</p>
+</div>
+
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const categoryFilter = document.getElementById('categoryFilter');
+  const searchBtn = document.getElementById('searchBtn');
+  const items = document.querySelectorAll('.item-card');
+  const emptyMessage = document.getElementById('emptyMessage');
+
+  function filterCatalog() {
+    const keyword = searchInput.value.toLowerCase().trim();
+    const selectedCategory = categoryFilter.value;
+    let visibleCount = 0;
+
+    items.forEach(item => {
+      const itemName = item.getAttribute('data-name').toLowerCase();
+      const itemCategory = item.getAttribute('data-category');
+
+      const matchesKeyword = itemName.includes(keyword);
+      const matchesCategory = selectedCategory === 'all' || itemCategory === selectedCategory;
+
+      if (matchesKeyword && matchesCategory) {
+        item.style.display = 'block';
+        visibleCount++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    // Tampilkan pesan jika tidak ada barang yang cocok (Kriteria 4)
+    emptyMessage.style.display = visibleCount === 0 ? 'block' : 'none';
+  }
+
+  // Pembaruan otomatis saat mengetik / mengganti kategori, atau saat klik tombol Cari (Kriteria 3)
+  searchInput.addEventListener('input', filterCatalog);
+  categoryFilter.addEventListener('change', filterCatalog);
+  searchBtn.addEventListener('click', filterCatalog);
+</script>
